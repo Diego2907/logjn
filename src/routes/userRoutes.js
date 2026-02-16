@@ -1,0 +1,15 @@
+import { Router } from 'express';
+import { register, login, getUser } from '../controllers/userController.js';
+
+const router = Router();
+
+// Registro de usuario
+router.post('/register', register);
+
+// Inicio de sesión
+router.post('/login', login);
+
+// Obtener datos de un usuario por ID
+router.get('/user/:id', getUser);
+
+export default router;
