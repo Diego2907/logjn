@@ -36,8 +36,8 @@ async function start() {
         await sequelize.authenticate();
         console.log('Conexión a MySQL establecida correctamente.');
 
-        // Sincronizar modelos (crea las tablas si no existen)
-        await sequelize.sync();
+        // Sincronizar modelos y ajustar columnas en desarrollo
+        await sequelize.sync({ alter: true });
         console.log('Modelos sincronizados.');
 
         app.listen(PORT, () => {

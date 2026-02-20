@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Panel de Control - Admin</title>
+		<style>
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+				min-height: 100vh;
+				padding: 30px;
+			}
+
+			.panel {
+				max-width: 1100px;
+				margin: 0 auto;
+				background: #fff;
+				padding: 26px;
+				border-radius: 12px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+			}
+
+			h1 {
+				color: #2c5364;
+				margin-bottom: 18px;
+				font-size: 24px;
+			}
+
+			.error-msg {
+				color: #e74c3c;
+				font-size: 14px;
+				margin-bottom: 12px;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 14px;
+			}
+
+			th,
+			td {
+				border: 1px solid #ddd;
+				padding: 10px;
+				text-align: left;
+				word-break: break-all;
+			}
+
+			th {
+				background: #f3f7fa;
+				color: #203a43;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="panel">
+			<h1>Panel de Control (Administrador)</h1>
+			<div class="error-msg" id="adminError"></div>
+			<table>
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Contraseña (hasheada)</th>
+						<th>Rol</th>
+						<th>Fecha de creación</th>
+					</tr>
+				</thead>
+				<tbody id="adminUsersBody"></tbody>
+			</table>
+		</div>
+
+		<script src="admin.js"></script>
+	</body>
+</html>

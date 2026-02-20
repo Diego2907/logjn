@@ -19,6 +19,15 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING(255),
         allowNull: false,
     },
+    role: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        defaultValue: 'lector',
+        field: 'rol',
+        validate: {
+            isIn: [['admin', 'lector']],
+        },
+    },
 }, {
     tableName: 'users',
     timestamps: true,

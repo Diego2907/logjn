@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, getUser } from '../controllers/userController.js';
+import { register, login, getUser, listUsers } from '../controllers/userController.js';
 
 const router = Router();
 
@@ -11,5 +11,8 @@ router.post('/login', login);
 
 // Obtener datos de un usuario por ID
 router.get('/user/:id', getUser);
+
+// Listar usuarios (solo admin)
+router.get('/users', listUsers);
 
 export default router;

@@ -16,6 +16,7 @@ const btnOpenRegister = document.getElementById('btnOpenRegister');
 const registerModal = document.getElementById('registerModal');
 const closeRegister = document.getElementById('closeRegister');
 const regUser = document.getElementById('regUser');
+const regRole = document.getElementById('regRole');
 const regPass = document.getElementById('regPass');
 const regPassConfirm = document.getElementById('regPassConfirm');
 const regUserError = document.getElementById('regUserError');
@@ -78,8 +79,12 @@ btnLogin.addEventListener('click', async () => {
 
         // Éxito
         openModal(successModal);
+
+        if (data.user?.role === 'admin') {
+            window.location.href = `admin.html?requesterId=${encodeURIComponent(data.user.id)}`;
+        }
     } catch (err) {
-        loginGeneralError.textContent = 'No se pudo conectar al servidor.';
+        loginGeneralError.textContent = err.message || 'No se pudo conectar al servidor.';
     }
 });
 
@@ -87,6 +92,7 @@ btnLogin.addEventListener('click', async () => {
 btnOpenRegister.addEventListener('click', () => {
     clearErrors(regUserError, regPassError, regPassConfirmError);
     regUser.value = '';
+    regRole.value = 'lector';
     regPass.value = '';
     regPassConfirm.value = '';
     openModal(registerModal);
@@ -103,6 +109,7 @@ btnRegister.addEventListener('click', async () => {
     clearErrors(regUserError, regPassError, regPassConfirmError);
 
     const user = regUser.value.trim();
+    const role = regRole.value;
     const pass = regPass.value;
     const confirm = regPassConfirm.value;
 
@@ -121,7 +128,7 @@ btnRegister.addEventListener('click', async () => {
         const res = await fetch(`${API_BASE}/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, password: pass, confirmPassword: confirm }),
+            body: JSON.stringify({ username: user, password: pass, confirmPassword: confirm, role }),
         });
 
         const data = await res.json();
